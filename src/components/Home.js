@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-
+/*
 export const Home = () => {
     return (
         <div class="container-fluid">
@@ -44,4 +44,4 @@ export const Home = () => {
             </div>
         </div>
     )
-};
+};*/
