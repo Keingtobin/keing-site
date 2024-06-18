@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
@@ -7,185 +7,43 @@ import {
   Message,
   MessageInput,
 } from "@chatscope/chat-ui-kit-react";
+export class Chatbot extends React.Component{
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      messages: []
+    }
+    //bind onSend to onSend
+    this.onSend = this.onSend.bind(this);
+  }
 
-export const Chatbot = () =>{
+  onSend(textContent){
+    //generate send message for UI
+    this.setState({
+      messages: this.state.messages.concat([{message: textContent, direction: "outgoing"}])
+    })
+    //generate send message for openAI
+    console.log(textContent);
+  }
+
+  render(){
     return (
     <div style={{ position: "relative", height: '92.75vh'}}>
         <MainContainer>
           <ChatContainer>
             <MessageList>
-              <Message
-                model={{
-                  message: "Hello my friend",
-                  sentTime: "just now",
-                  sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              <Message
-                model={{
-                    message: "Boom boom",
-                    sentTime: "just now",
-                    sender: "Joe",
-                }}
-              />
-              
+              {
+                this.state.messages.map((item)=> (
+                  <Message model={{message: item.message, direction: item.direction}}/>
+                ))
+              }
             </MessageList>
-            <MessageInput placeholder="Type message here" />
+            <MessageInput onSend={(innerHTML,textContent,innerText,nodes)=> this.onSend(textContent)}placeholder="Type message here" />
           </ChatContainer>
         </MainContainer>
-      </div>)
+      </div>);
+  }
+
 };
+
