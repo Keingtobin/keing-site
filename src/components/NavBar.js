@@ -17,6 +17,7 @@ export default function NavBar() {
                         <Nav className='me=auto'>
                             <Nav.Link as={Link}to="/projects">Projects</Nav.Link>
                             <Nav.Link as={Link}to="/education" >Education</Nav.Link>
+                            <Nav.Link as={Link}to="/chatbot">Chatbot</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
